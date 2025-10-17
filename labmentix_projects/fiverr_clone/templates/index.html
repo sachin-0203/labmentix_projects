@@ -1,0 +1,6 @@
+<!doctype html><html><head><title>Fiverr Clone - Home</title></head><body>
+<h1>Fiverr Clone (Labmentix) - Gigs</h1>
+{% if session.user_name %}<p>Welcome {{ session.user_name }} ({{ session.role }}) - <a href="{{ url_for('logout') }}">Logout</a></p>{% else %}<p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a></p>{% endif %}
+{% if session.role=='seller' %}<p><a href="{{ url_for('create_gig') }}">Create Gig</a></p>{% endif %}
+<ul>{% for g in gigs %}<li><a href="{{ url_for('gig_detail', gig_id=g.id) }}">{{ g.title }} - ₹{{ g.price }}</a></li>{% else %}<li>No gigs yet</li>{% endfor %}</ul>
+</body></html>
